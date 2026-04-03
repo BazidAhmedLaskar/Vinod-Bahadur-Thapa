@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy - Explmentor</title>
+<meta name="description" content="Privacy Policy of Explmentor website.">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "Person",
+ "name": "Vinod Bahadur Thapa",
+ "jobTitle": "Web Development Educator",
+ "worksFor": {
+   "@type": "Organization",
+   "name": "Thapa Technical"
+ }
+}
+</script><link rel="icon" type="image/png" href="Vinod Bahadur Thapa.png">
+</head>
+
+<body>
+
+<nav id="main-nav">
+  <a class="nav-logo" href="/">Shradha Khapra</a>
+
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/about.html">About</a></li>
+    <li><a href="/contact.html">Contact</a></li>
+    <li><a href="/privacy.html">Privacy</a></li>
+  </ul>
+</nav>
+<section class="section">
+  <div class="section-title">Privacy Policy</div>
+
+  <p class="section-body">
+    We respect your privacy and do not collect personal data without consent.
+  </p>
+
+  <div class="reveal" style="margin-top:2rem;">
+    <h3>Cookies</h3>
+    <p class="section-body">
+      This site may use cookies for analytics and advertising.
+    </p>
+  </div>
+
+  <div class="reveal" style="margin-top:2rem;">
+    <h3>Ads</h3>
+    <p class="section-body">
+      Third-party vendors like :contentReference[oaicite:1]{index=1} may use cookies to serve ads.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Explmentor. All rights reserved.</p>
+
+  <div style="margin-top:10px;">
+    <a href="/about.html">About</a> |
+    <a href="/contact.html">Contact</a> |
+    <a href="/privacy.html">Privacy Policy</a> |
+    <a href="/terms.html">Terms</a> |
+    <a href="/disclaimer.html">Disclaimer</a>
+  </div>
+</footer>
+<script>
+const reveals = document.querySelectorAll('.reveal');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+    }
+  });
+});
+
+reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

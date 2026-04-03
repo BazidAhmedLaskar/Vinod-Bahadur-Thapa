@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Explmentor</title>
+<meta name="description" content="Learn about Explmentor and its mission to simplify learning.">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "Person",
+ "name": "Vinod Bahadur Thapa",
+ "jobTitle": "Web Development Educator",
+ "worksFor": {
+   "@type": "Organization",
+   "name": "Thapa Technical"
+ }
+}
+</script>
+<link rel="icon" type="image/png" href="Vinod Bahadur Thapa.png">
+</head>
+
+<body>
+
+<nav id="main-nav">
+  <a class="nav-logo" href="/">Vinod Bahadur  Thapa</a>
+
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/about.html">About</a></li>
+    <li><a href="/contact.html">Contact</a></li>
+    <li><a href="/privacy.html">Privacy</a></li>
+  </ul>
+</nav>
+<section class="section">
+  <div class="section-label">About</div>
+    <h3>Part of Explmentor</h3>
+  <p class="section-body">
+    This website is part of <a href="https://explorementor.netlify.app" style="color:var(--amber); text-decoration:none;">
+    Explmentor</a>, a platform built to help students find the right teachers, learning paths, and resources.
+    
+    While this page focuses on 
+    :contentReference[oaicite:0]{index=0}, 
+    Explmentor connects multiple educators and guides students toward structured learning instead of random content consumption.
+  </p>
+  <div class="section-title">Why <em>Explmentor</em> exists</div>
+
+  <p class="section-body">
+    Explmentor is built to solve one major problem students face today — confusion in learning.
+    With thousands of courses, teachers, and platforms available online, most students don’t
+    know where to start or what to follow.
+  </p>
+
+  <div class="reveal" style="margin-top:2rem;">
+    <h3>The Problem</h3>
+    <p class="section-body">
+      Students often jump between different teachers, YouTube channels, and courses without a clear direction.
+      This leads to wasted time, lack of consistency, and slow progress.
+      Instead of learning deeply, they stay stuck in endless searching.
+    </p>
+  </div>
+
+  <div class="reveal" style="margin-top:2rem;">
+    <h3>The Solution</h3>
+    <p class="section-body">
+      Explmentor provides structured guidance by helping students discover the right teachers,
+      understand what to learn next, and follow a clear path.
+      Instead of random content consumption, students get focused direction.
+    </p>
+  </div>
+
+  <div class="reveal" style="margin-top:2rem;">
+    <h3>How Explmentor Works</h3>
+    <p class="section-body">
+      Explmentor connects students with top educators like 
+      :contentReference[oaicite:0]{index=0} and others,
+      breaking down their teaching style, strengths, and ideal use cases.
+      This helps learners choose the right mentor based on their level and goals.
+    </p>
+  </div>
+
+  <div class="reveal" style="margin-top:2rem;">
+    <h3>About the Creator</h3>
+    <p class="section-body">
+      Explmentor was created by Bazid Ahmed Laskar, a student who experienced the same confusion
+      while trying to learn coding and skills online.
+      Instead of jumping between resources, the idea was to build a platform that simplifies learning
+      and gives students clear direction from the start.
+    </p>
+  </div>
+
+  <div class="reveal" style="margin-top:2rem;">
+    <h3>Mission</h3>
+    <p class="section-body">
+      The mission of Explmentor is simple — help students learn smarter, not harder.
+      By providing clarity, structured guidance, and trusted resources, Explmentor aims
+      to reduce confusion and improve learning efficiency.
+    </p>
+  </div>
+</section>
+
+
+</div>
+</section>
+
+<footer>
+  <p>© 2026 Explmentor. All rights reserved.</p>
+
+  <div style="margin-top:10px;">
+    <a href="/about.html">About</a> |
+    <a href="/contact.html">Contact</a> |
+    <a href="/privacy.html">Privacy Policy</a> |
+    <a href="/terms.html">Terms</a> |
+    <a href="/disclaimer.html">Disclaimer</a>
+  </div>
+</footer>
+<script>
+const reveals = document.querySelectorAll('.reveal');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+    }
+  });
+});
+
+reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

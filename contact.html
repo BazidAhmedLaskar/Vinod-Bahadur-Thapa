@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Explmentor</title>
+<meta name="description" content="Contact Explmentor for feedback, suggestions, or collaboration.">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "Person",
+ "name": "Vinod Bahadur Thapa",
+ "jobTitle": "Web Development Educator",
+ "worksFor": {
+   "@type": "Organization",
+   "name": "Thapa Technical"
+ }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="Vinod Bahadur Thapa.png">
+</head>
+
+<body>
+
+<nav id="main-nav">
+  <a class="nav-logo" href="/">Shradha Khapra</a>
+
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/about.html">About</a></li>
+    <li><a href="/contact.html">Contact</a></li>
+    <li><a href="/privacy.html">Privacy</a></li>
+  </ul>
+</nav>
+
+<section class="section">
+  <div class="section-label">Contact</div>
+  <div class="section-title">Get in <em>touch</em></div>
+
+  <p class="section-body">
+    Have questions or suggestions? Reach out anytime.
+  </p>
+
+  <div class="reveal" style="margin-top:2rem;">
+    <h3>Contact Details</h3>
+<p>Email: <a href="mailto:ahmedlaskarbazid@gmail.com">ahmedlaskarbazid@gmail.com</a></p>
+    <p>Location: India</p>
+    <p>Response Time: 24–48 hours</p>
+  </div>
+
+ 
+
+<footer>
+  <p>© 2026 Explmentor. All rights reserved.</p>
+
+  <div style="margin-top:10px;">
+    <a href="/about.html">About</a> |
+    <a href="/contact.html">Contact</a> |
+    <a href="/privacy.html">Privacy Policy</a> |
+    <a href="/terms.html">Terms</a> |
+    <a href="/disclaimer.html">Disclaimer</a>
+  </div>
+</footer>
+<script>
+const reveals = document.querySelectorAll('.reveal');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+    }
+  });
+});
+
+reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
