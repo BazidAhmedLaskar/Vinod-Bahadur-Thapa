@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Master web development with Thapa Technical. Step-by-step tutorials on React, Next.js, MERN Stack, and SEO-friendly websites by Vinod Bahadur Thapa. Free source code & projects.">
+    <meta name="keywords" content="Thapa Technical, Vinod Bahadur Thapa, React JS course, Next.js tutorial, MERN Stack, full stack web development, web development tutorials in Hindi, SEO friendly website">
+    <meta name="author" content="Vinod Bahadur Thapa">
+    <title>Thapa Technical | Learn React JS, Next.js &amp; MERN Stack from Vinod Bahadur Thapa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg:        #070809;
+            --surface:   #0f1015;
+            --surface2:  #16181f;
+            --border:    rgba(255,255,255,0.06);
+            --cyan:      #00d4ff;
+            --cyan-dim:  rgba(0,212,255,0.12);
+            --cyan-glow: rgba(0,212,255,0.25);
+            --text:      #eef0f4;
+            --muted:     #7a8292;
+            --font-head: 'Clash Display', 'Outfit', sans-serif;
+            --font-body: 'Outfit', sans-serif;
+        }
+
+        html { scroll-behavior: smooth; }
+        body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.65; overflow-x: hidden; }
+
+        /* ── NAV ── */
+        #main-nav {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(7,8,9,0.82);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 5%; height: 66px;
+        }
+
+        .nav-logo {
+            display: flex; align-items: center; gap: 11px;
+            text-decoration: none; color: var(--text);
+            font-family: var(--font-head); font-size: 1.2rem;
+            font-weight: 700; letter-spacing: -0.02em;
+        }
+
+        .nav-logo-badge {
+            width: 34px; height: 34px; background: var(--cyan);
+            border-radius: 10px; display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 1.1rem; color: #000; flex-shrink: 0;
+            box-shadow: 0 0 18px var(--cyan-glow);
+        }
+
+        .nav-links { list-style: none; display: flex; align-items: center; gap: 0.2rem; }
+
+        .nav-links li a {
+            color: var(--muted); text-decoration: none; font-size: 0.88rem;
+            font-weight: 500; padding: 0.45rem 0.9rem; border-radius: 8px;
+            transition: color 0.2s, background 0.2s; display: block;
+        }
+        .nav-links li a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+
+        .nav-links li a.nav-yt {
+            display: flex; align-items: center; gap: 7px;
+            background: #cc0000; color: #fff !important; border-radius: 8px;
+            font-weight: 600; padding: 0.45rem 1rem; margin-left: 0.5rem;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .nav-links li a.nav-yt:hover { background: #e50000; transform: translateY(-1px); }
+
+        .nav-links li a.nav-shop {
+            background: var(--cyan); color: #000 !important; font-weight: 700;
+            border-radius: 8px; padding: 0.45rem 1rem;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+        .nav-links li a.nav-shop:hover { opacity: 0.85; transform: translateY(-1px); }
+
+        #nav-toggle {
+            display: none; background: none; border: none;
+            color: var(--text); font-size: 1.35rem; cursor: pointer; padding: 4px 8px;
+        }
+
+        #mobile-menu { display: none; flex-direction: column; background: var(--surface); border-bottom: 1px solid var(--border); }
+        #mobile-menu.open { display: flex; }
+        #mobile-menu a {
+            color: var(--muted); text-decoration: none; font-size: 0.92rem; font-weight: 500;
+            padding: 0.9rem 5%; border-bottom: 1px solid var(--border);
+            transition: color 0.2s, background 0.2s;
+        }
+        #mobile-menu a:hover { color: var(--text); background: var(--surface2); }
+        #mobile-menu a:last-child { border-bottom: none; }
+
+        /* ── HERO ── */
+        .hero { position: relative; min-height: 92vh; display: flex; align-items: center; overflow: hidden; }
+
+        .hero-noise {
+            position: absolute; inset: 0; pointer-events: none;
+            background:
+                radial-gradient(ellipse 55% 55% at 75% 35%, rgba(0,212,255,0.13) 0%, transparent 65%),
+                radial-gradient(ellipse 40% 40% at 20% 75%, rgba(0,150,200,0.08) 0%, transparent 60%),
+                linear-gradient(175deg, #070809 0%, #0d1220 100%);
+        }
+
+        .hero-grid {
+            position: absolute; inset: 0; pointer-events: none;
+            background-image:
+                linear-gradient(rgba(0,212,255,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,212,255,0.04) 1px, transparent 1px);
+            background-size: 55px 55px;
+        }
+
+        .hero-inner {
+            position: relative; max-width: 1200px; margin: 0 auto;
+            padding: 7rem 5% 5rem;
+            display: grid; grid-template-columns: 1fr 400px;
+            gap: 5rem; align-items: center; width: 100%;
+        }
+
+        .hero-pill {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--cyan-dim); border: 1px solid rgba(0,212,255,0.2);
+            color: var(--cyan); font-size: 0.76rem; font-weight: 600;
+            letter-spacing: 0.07em; text-transform: uppercase;
+            padding: 0.38rem 1rem; border-radius: 50px; margin-bottom: 1.6rem;
+        }
+
+        .live-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--cyan); animation: live-pulse 1.8s ease-in-out infinite; }
+
+        @keyframes live-pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(0,212,255,0.7); }
+            50%       { box-shadow: 0 0 0 7px rgba(0,212,255,0); }
+        }
+
+        .hero h1 {
+            font-family: var(--font-head); font-size: clamp(2.4rem, 5vw, 4.2rem);
+            font-weight: 700; letter-spacing: -0.04em; line-height: 1.08; margin-bottom: 1.5rem;
+        }
+        .hero h1 em { font-style: normal; color: var(--cyan); text-shadow: 0 0 40px rgba(0,212,255,0.4); }
+
+        .hero-desc { color: var(--muted); font-size: 1.05rem; max-width: 480px; margin-bottom: 2.5rem; line-height: 1.8; }
+
+        .hero-btns { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 3rem; }
+
+        .btn-cyan {
+            display: inline-flex; align-items: center; gap: 9px;
+            background: var(--cyan); color: #000; font-family: var(--font-body);
+            font-weight: 700; font-size: 0.92rem; padding: 0.85rem 1.8rem;
+            border-radius: 12px; text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 28px var(--cyan-glow);
+        }
+        .btn-cyan:hover { transform: translateY(-2px); box-shadow: 0 8px 38px rgba(0,212,255,0.4); }
+
+        .btn-ghost {
+            display: inline-flex; align-items: center; gap: 9px;
+            background: transparent; color: var(--text); font-family: var(--font-body);
+            font-weight: 500; font-size: 0.92rem; padding: 0.85rem 1.8rem;
+            border-radius: 12px; border: 1px solid var(--border); text-decoration: none;
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .btn-ghost:hover { background: var(--surface); border-color: rgba(255,255,255,0.12); }
+
+        .hero-stats { display: flex; gap: 2.5rem; flex-wrap: wrap; }
+        .stat-num { font-family: var(--font-head); font-size: 1.55rem; font-weight: 700; color: var(--text); letter-spacing: -0.03em; }
+        .stat-label { font-size: 0.78rem; color: var(--muted); margin-top: 1px; }
+
+        .hero-card {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 22px; overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 60px rgba(0,212,255,0.05);
+        }
+        .hero-card img { width: 100%; aspect-ratio: 4/3; object-fit: cover; object-position: top center; display: block; }
+        .hero-card-foot {
+            padding: 1.1rem 1.5rem; display: flex; align-items: center; gap: 11px;
+            border-top: 1px solid var(--border);
+        }
+        .hero-card-foot i { color: var(--cyan); font-size: 1.1rem; }
+        .hero-card-foot span { font-size: 0.82rem; color: var(--muted); }
+        .hero-card-foot strong { color: var(--text); font-weight: 600; }
+
+        /* ── SECTIONS ── */
+        .section-wrap { max-width: 1200px; margin: 0 auto; padding: 7rem 5%; }
+
+        .section-label {
+            font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+            color: var(--cyan); margin-bottom: 0.85rem;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .section-label::before { content: ''; display: inline-block; width: 18px; height: 2px; background: var(--cyan); border-radius: 2px; }
+        .section-title { font-family: var(--font-head); font-size: clamp(1.9rem, 3.5vw, 2.8rem); font-weight: 700; letter-spacing: -0.04em; line-height: 1.15; margin-bottom: 1rem; }
+        .section-sub { color: var(--muted); font-size: 0.97rem; max-width: 560px; line-height: 1.75; }
+
+        /* ── BIOGRAPHY ── */
+        #about { scroll-margin-top: 80px; }
+        .bio-wrap { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+        .bio-grid { display: grid; grid-template-columns: 380px 1fr; gap: 5rem; align-items: start; margin-top: 4rem; }
+        .bio-portrait { position: sticky; top: 86px; }
+
+        .bio-img-wrap { position: relative; border-radius: 22px; overflow: hidden; border: 1px solid var(--border); }
+        .bio-img-wrap::after { content: ''; position: absolute; inset: 0; background: linear-gradient(170deg, transparent 45%, rgba(0,212,255,0.18) 100%); pointer-events: none; }
+        .bio-img-wrap img { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: top center; display: block; filter: grayscale(15%) contrast(1.04); }
+
+        .bio-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.3rem; }
+        .bio-tag { font-size: 0.76rem; font-weight: 500; padding: 0.3rem 0.8rem; border-radius: 50px; background: var(--surface2); border: 1px solid var(--border); color: var(--muted); }
+        .bio-tag.hi { background: var(--cyan-dim); border-color: rgba(0,212,255,0.2); color: var(--cyan); }
+
+        .bio-text { display: flex; flex-direction: column; gap: 2.2rem; }
+        .bio-block h3 { font-family: var(--font-head); font-size: 1.1rem; font-weight: 700; letter-spacing: -0.02em; color: var(--text); margin-bottom: 0.7rem; display: flex; align-items: center; gap: 10px; }
+        .bio-block h3 i { color: var(--cyan); font-size: 0.9rem; width: 28px; height: 28px; background: var(--cyan-dim); border-radius: 7px; display: flex; align-items: center; justify-content: center; }
+        .bio-block p { color: var(--muted); font-size: 0.94rem; line-height: 1.85; }
+        .bio-block p strong { color: var(--text); font-weight: 500; }
+
+        .timeline { border-left: 2px solid var(--border); margin-left: 6px; padding-left: 1.6rem; display: flex; flex-direction: column; gap: 1.6rem; }
+        .tl-item { position: relative; }
+        .tl-item::before { content: ''; position: absolute; left: calc(-1.6rem - 5px); top: 5px; width: 10px; height: 10px; border-radius: 50%; background: var(--bg); border: 2px solid var(--cyan); box-shadow: 0 0 8px var(--cyan-glow); }
+        .tl-year { font-size: 0.73rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--cyan); margin-bottom: 0.25rem; }
+        .tl-title { font-weight: 600; font-size: 0.93rem; color: var(--text); margin-bottom: 0.25rem; }
+        .tl-desc { font-size: 0.84rem; color: var(--muted); line-height: 1.65; }
+
+        /* ── LEARN GRID ── */
+        #courses { scroll-margin-top: 80px; }
+        .learn-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-top: 3rem; }
+        .learn-card { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 2rem; display: flex; flex-direction: column; gap: 0.9rem; transition: border-color 0.25s, transform 0.25s; text-decoration: none; color: inherit; }
+        .learn-card:hover { border-color: rgba(0,212,255,0.3); transform: translateY(-4px); }
+        .learn-card-icon { width: 44px; height: 44px; background: var(--cyan-dim); border: 1px solid rgba(0,212,255,0.18); border-radius: 11px; display: flex; align-items: center; justify-content: center; color: var(--cyan); font-size: 1rem; }
+        .learn-card-badge { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cyan); }
+        .learn-card-title { font-family: var(--font-head); font-size: 1rem; font-weight: 700; color: var(--text); line-height: 1.35; letter-spacing: -0.02em; }
+        .learn-card.wide { grid-column: span 2; flex-direction: row; align-items: center; gap: 1.5rem; background: linear-gradient(135deg, var(--cyan) 0%, #0099cc 100%); border-color: transparent; }
+        .learn-card.wide .learn-card-icon { background: rgba(0,0,0,0.2); border-color: rgba(0,0,0,0.15); color: #000; width: 52px; height: 52px; font-size: 1.3rem; flex-shrink: 0; }
+        .learn-card.wide .learn-card-badge { color: rgba(0,0,0,0.6); }
+        .learn-card.wide .learn-card-title { color: #000; font-size: 1.1rem; }
+
+        /* ── WHY ── */
+        .why-bg { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-top: 3rem; }
+        .why-card { background: var(--bg); border: 1px solid var(--border); border-radius: 18px; padding: 2rem; }
+        .why-card .icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+        .why-card strong { font-family: var(--font-head); font-size: 0.98rem; font-weight: 700; color: var(--text); display: block; margin-bottom: 0.5rem; letter-spacing: -0.02em; }
+        .why-card p { font-size: 0.86rem; color: var(--muted); line-height: 1.75; }
+
+        /* ── CTA ── */
+        .cta-band { background: linear-gradient(135deg, #003344 0%, #001a22 100%); border-top: 1px solid rgba(0,212,255,0.15); position: relative; overflow: hidden; }
+        .cta-band::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 80% at 50% 50%, rgba(0,212,255,0.08) 0%, transparent 70%); }
+        .cta-inner { position: relative; max-width: 860px; margin: 0 auto; padding: 6rem 5%; text-align: center; }
+        .cta-inner h2 { font-family: var(--font-head); font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; letter-spacing: -0.04em; color: var(--text); margin-bottom: 1rem; }
+        .cta-inner h2 em { font-style: normal; color: var(--cyan); }
+        .cta-inner p { color: var(--muted); font-size: 1rem; max-width: 480px; margin: 0 auto 2.5rem; line-height: 1.8; }
+        .cta-btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; }
+        .cta-btn-yt { display: inline-flex; align-items: center; gap: 8px; background: #cc0000; color: #fff; font-family: var(--font-body); font-weight: 600; font-size: 0.9rem; padding: 0.85rem 1.8rem; border-radius: 12px; text-decoration: none; transition: background 0.2s; }
+        .cta-btn-yt:hover { background: #e50000; }
+        .cta-btn-shop { display: inline-flex; align-items: center; gap: 8px; background: var(--cyan); color: #000; font-family: var(--font-body); font-weight: 700; font-size: 0.9rem; padding: 0.85rem 1.8rem; border-radius: 12px; text-decoration: none; transition: opacity 0.2s; box-shadow: 0 4px 24px var(--cyan-glow); }
+        .cta-btn-shop:hover { opacity: 0.88; }
+        .cta-btn-outline { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: var(--text); font-family: var(--font-body); font-weight: 500; font-size: 0.9rem; padding: 0.85rem 1.8rem; border-radius: 12px; text-decoration: none; border: 1px solid var(--border); transition: background 0.2s; }
+        .cta-btn-outline:hover { background: rgba(255,255,255,0.05); }
+        .cta-tagline { margin-top: 3rem; font-family: var(--font-head); font-size: 1.6rem; font-weight: 700; letter-spacing: -0.03em; color: var(--text); line-height: 1.3; }
+        .cta-tagline em { font-style: normal; color: var(--cyan); }
+
+        /* ── FOOTER ── */
+        footer { background: var(--bg); border-top: 1px solid var(--border); padding: 5rem 5% 3rem; }
+        .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; }
+        .footer-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); font-family: var(--font-head); font-size: 1.15rem; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 0.9rem; }
+        .footer-brand p { font-size: 0.86rem; color: var(--muted); line-height: 1.7; max-width: 250px; }
+        .footer-socials { display: flex; gap: 0.75rem; margin-top: 1.5rem; }
+        .footer-social { width: 36px; height: 36px; background: var(--surface); border: 1px solid var(--border); border-radius: 9px; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 0.88rem; text-decoration: none; transition: color 0.2s, border-color 0.2s; }
+        .footer-social:hover { color: var(--cyan); border-color: rgba(0,212,255,0.3); }
+        .footer-col h4 { font-family: var(--font-head); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text); margin-bottom: 1.2rem; }
+        .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+        .footer-col ul li a { color: var(--muted); text-decoration: none; font-size: 0.86rem; transition: color 0.2s; }
+        .footer-col ul li a:hover { color: var(--cyan); }
+        .footer-bottom { max-width: 1200px; margin: 3rem auto 0; padding-top: 2rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+        .footer-bottom p { font-size: 0.8rem; color: var(--muted); }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 960px) {
+            .nav-links { display: none; }
+            #nav-toggle { display: block; }
+            .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
+            .hero-card { display: none; }
+            .bio-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .bio-portrait { position: static; }
+            .bio-img-wrap img { aspect-ratio: 16/9; object-position: center 15%; }
+            .learn-grid { grid-template-columns: repeat(2, 1fr); }
+            .learn-card.wide { grid-column: span 2; }
+            .why-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
+            .footer-brand { grid-column: 1 / -1; }
+        }
+
+        @media (max-width: 560px) {
+            .hero-stats { flex-direction: column; gap: 1rem; }
+            .learn-grid, .why-grid { grid-template-columns: 1fr; }
+            .learn-card.wide { grid-column: span 1; flex-direction: column; }
+            .footer-inner { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ══ NAV ══ -->
+    <nav id="main-nav">
+        <a class="nav-logo" href="/">
+            <div class="nav-logo-badge">T</div>
+            Thapa Technical
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#courses">Courses</a></li>
+            <li><a href="https://www.thapatechnical.com/p/contact-us.html" target="_blank">Contact</a></li>
+            <li><a href="https://www.thapatechnical.com/p/privacy-policy.html" target="_blank">Privacy</a></li>
+            <li>
+                <a href="https://www.youtube.com/@ThapaTechnical" target="_blank" class="nav-yt">
+                    <i class="fab fa-youtube"></i> Subscribe
+                </a>
+            </li>
+            <li>
+                <a href="https://thapatechnical.shop" target="_blank" class="nav-shop">Browse Courses</a>
+            </li>
+        </ul>
+
+        <!-- Hamburger — correctly using Font Awesome icon -->
+        <button id="nav-toggle" onclick="toggleNav()" aria-label="Menu">
+            <i class="fas fa-bars" id="nav-icon"></i>
+        </button>
+    </nav>
+
+    <div id="mobile-menu">
+        <a href="/">Home</a>
+        <a href="#about">About</a>
+        <a href="#courses">Courses</a>
+        <a href="https://www.thapatechnical.com/p/contact-us.html" target="_blank">Contact</a>
+        <a href="https://www.thapatechnical.com/p/privacy-policy.html" target="_blank">Privacy</a>
+        <a href="https://www.youtube.com/@ThapaTechnical" target="_blank"><i class="fab fa-youtube"></i>&nbsp; Subscribe on YouTube</a>
+        <a href="https://thapatechnical.shop" target="_blank">Browse Premium Courses →</a>
+    </div>
+
+    <!-- ══ HERO ══ -->
+    <header class="hero">
+        <div class="hero-noise"></div>
+        <div class="hero-grid"></div>
+        <div class="hero-inner">
+            <div>
+                <div class="hero-pill">
+                    <span class="live-dot"></span>
+                    NEW: React 19 + Next.js 16 — Just Uploaded
+                </div>
+                <h1>
+                    Welcome to<br>
+                    Thapa Technical –<br>
+                    Learn Modern Web Dev from<br>
+                    <em>Vinod Bahadur Thapa</em>
+                </h1>
+                <p class="hero-desc">
+                    Are you ready to become a skilled full-stack web developer in 2026?
+                    Real projects. Real skills. Real jobs.
+                </p>
+                <div class="hero-btns">
+                    <a href="https://www.youtube.com/@ThapaTechnical" target="_blank" class="btn-cyan">
+                        <i class="fab fa-youtube"></i> Watch Free Tutorials
+                    </a>
+                    <a href="https://thapatechnical.shop" target="_blank" class="btn-ghost">
+                        Browse All Courses <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div>
+                        <div class="stat-num">800K+</div>
+                        <div class="stat-label">YouTube Subscribers</div>
+                    </div>
+                    <div>
+                        <div class="stat-num">8+ Yrs</div>
+                        <div class="stat-label">Industry Experience</div>
+                    </div>
+                    <div>
+                        <div class="stat-num">4.98★</div>
+                        <div class="stat-label">Average Rating</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero card — real photo -->
+            <div class="hero-card">
+                <img src="Vinod Bahadur Thapa.png" alt="Vinod Bahadur Thapa — Founder of Thapa Technical">
+                <div class="hero-card-foot">
+                    <i class="fas fa-play-circle"></i>
+                    <span><strong>Live:</strong> Next.js 16 Full Course — Just Uploaded</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ══ BIOGRAPHY ══ -->
+    <section id="about" class="bio-wrap">
+        <div class="section-wrap">
+            <p class="section-label">Biography</p>
+            <h2 class="section-title">Vinod Bahadur Thapa —<br>The Man Behind Thapa Technical</h2>
+            <p class="section-sub">
+                From a self-taught developer to one of India's most respected web development educators —
+                the story of Vinod Bhai is an inspiration for every aspiring coder.
+            </p>
+
+            <div class="bio-grid">
+
+                <!-- Portrait — real photo -->
+                <div class="bio-portrait">
+                    <div class="bio-img-wrap">
+                        <img src="Vinod Bahadur Thapa.png" alt="Vinod Bahadur Thapa">
+                    </div>
+                    <div class="bio-tags">
+                        <span class="bio-tag hi">Thapa Technical</span>
+                        <span class="bio-tag hi">Full-Stack Dev</span>
+                        <span class="bio-tag">React Expert</span>
+                        <span class="bio-tag">Next.js</span>
+                        <span class="bio-tag">MERN Stack</span>
+                        <span class="bio-tag">YouTuber</span>
+                        <span class="bio-tag">8+ Years Experience</span>
+                        <span class="bio-tag">SEO Specialist</span>
+                    </div>
+                </div>
+
+                <!-- Bio Text -->
+                <div class="bio-text">
+
+                    <div class="bio-block">
+                        <h3><i class="fas fa-seedling"></i> Early Life & Passion for Coding</h3>
+                        <p>
+                            Vinod Bahadur Thapa was born in Nepal (🇳🇵 5 Jan 1994) and grew up with a deep love
+                            for technology and problem-solving. From a young age, he was fascinated by how websites
+                            and digital products were built — spending countless hours experimenting with HTML, CSS,
+                            and JavaScript on his own. Unlike many who followed a formal route,
+                            <strong>Vinod largely self-taught himself</strong> the foundations of web development
+                            through sheer curiosity and persistence. This hands-on, no-shortcuts approach would
+                            later define his teaching philosophy entirely.
+                        </p>
+                    </div>
+
+                    <div class="bio-block">
+                        <h3><i class="fas fa-laptop-code"></i> Professional Developer Career</h3>
+                        <p>
+                            Before becoming an educator, Vinod worked as a <strong>professional full-stack web
+                            developer for over 8 years</strong>, building real-world applications for clients and
+                            companies. He worked extensively with the
+                            <strong>MERN stack (MongoDB, Express.js, React, Node.js)</strong> and was an early
+                            adopter of Next.js for server-side rendering and SEO-optimised web apps.
+                            His industry experience spans <strong>e-commerce platforms, admin dashboards, REST APIs,
+                            authentication systems, and payment gateway integrations</strong> — giving him a uniquely
+                            practical perspective that textbooks and bootcamps rarely offer.
+                        </p>
+                    </div>
+
+                    <div class="bio-block">
+                        <h3><i class="fas fa-play-circle"></i> Founding Thapa Technical</h3>
+                        <p>
+                            In the early days of Hindi-medium programming education on YouTube, Vinod noticed a
+                            glaring gap — most tutorials were either too shallow or too theoretical, rarely showing
+                            how real projects were built from scratch to deployment. So he launched
+                            <strong>Thapa Technical</strong>, a YouTube channel and education platform dedicated to
+                            <strong>project-based, practical, full-stack development tutorials in Hindi and
+                            English</strong>. He also founded <strong>Kodyfier</strong>, an IT institute offering
+                            live DSA and web development classes. The channel quickly resonated with lakhs of
+                            Indian developers who finally had a teacher who spoke their language —
+                            literally and figuratively.
+                        </p>
+                    </div>
+
+                    <div class="bio-block">
+                        <h3><i class="fas fa-chart-line"></i> Journey & Milestones</h3>
+                        <div class="timeline">
+                            <div class="tl-item">
+                                <div class="tl-year">Early Career</div>
+                                <div class="tl-title">Self-Taught Developer Foundations</div>
+                                <div class="tl-desc">Mastered HTML, CSS, JavaScript, and PHP independently. Built first client projects and discovered a passion for modern JavaScript frameworks.</div>
+                            </div>
+                            <div class="tl-item">
+                                <div class="tl-year">Industry Years</div>
+                                <div class="tl-title">Professional Full-Stack Developer</div>
+                                <div class="tl-desc">Worked on production-grade web applications using React, Node.js, and MongoDB. Built e-commerce sites, portals, and SaaS dashboards for Indian and international clients.</div>
+                            </div>
+                            <div class="tl-item">
+                                <div class="tl-year">2019</div>
+                                <div class="tl-title">Launched Thapa Technical on YouTube</div>
+                                <div class="tl-desc">Started free tutorials in Hindi teaching real-world React JS and JavaScript to students without access to quality courses. Early videos gained instant traction.</div>
+                            </div>
+                            <div class="tl-item">
+                                <div class="tl-year">2020 – 2022</div>
+                                <div class="tl-title">100K → 500K Subscribers & Premium Courses</div>
+                                <div class="tl-desc">Channel grew explosively during the remote-learning era. Launched thapatechnical.shop for premium courses, source code bundles, and notes. Published the famous MERN Stack series.</div>
+                            </div>
+                            <div class="tl-item">
+                                <div class="tl-year">2023 – 2024</div>
+                                <div class="tl-title">Next.js Mastery + Kodyfier IT Institute</div>
+                                <div class="tl-desc">Became one of India's go-to educators for Next.js, App Router, and SEO-optimised full-stack development. Founded Kodyfier IT Institute for live DSA & development classes.</div>
+                            </div>
+                            <div class="tl-item">
+                                <div class="tl-year">2025 – 2026</div>
+                                <div class="tl-title">800K+ Subscribers & React 19 / Next.js 16</div>
+                                <div class="tl-desc">With over 800,000 YouTube subscribers and a thriving community, Thapa Technical is now one of India's premier full-stack web development education platforms.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bio-block">
+                        <h3><i class="fas fa-heart"></i> Teaching Philosophy</h3>
+                        <p>
+                            Vinod Bhai's core belief is simple: <strong>"You learn to code by building, not by
+                            watching."</strong> Every course at Thapa Technical is structured around complete,
+                            real-world projects — Netflix clones, job portals, e-commerce stores, blog platforms,
+                            and admin dashboards. He emphasises not just writing code that works, but writing code
+                            that is <strong>clean, scalable, SEO-friendly, and deployable</strong>. His teaching
+                            style bridges the gap between college education and industry expectations, making
+                            students genuinely job-ready rather than just certificate-ready.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ COURSES ══ -->
+    <section id="courses">
+        <div class="section-wrap">
+            <p class="section-label">Curriculum</p>
+            <h2 class="section-title">What You Will Learn<br>at Thapa Technical</h2>
+            <p class="section-sub">From HTML basics to deploying full-stack Next.js apps — every skill you need, taught with real projects.</p>
+
+            <div class="learn-grid">
+                <a href="https://www.youtube.com/@ThapaTechnical/playlists" target="_blank" class="learn-card">
+                    <div class="learn-card-icon"><i class="fas fa-laptop-code"></i></div>
+                    <div class="learn-card-badge">Frontend</div>
+                    <div class="learn-card-title">Beautiful, responsive websites with HTML, CSS, Tailwind & JavaScript</div>
+                </a>
+                <a href="https://www.youtube.com/@ThapaTechnical/playlists" target="_blank" class="learn-card">
+                    <div class="learn-card-icon"><i class="fas fa-atom"></i></div>
+                    <div class="learn-card-badge">React 19</div>
+                    <div class="learn-card-title">React JS — Hooks, Context API, Redux & real-world projects</div>
+                </a>
+                <a href="https://www.youtube.com/@ThapaTechnical/playlists" target="_blank" class="learn-card">
+                    <div class="learn-card-icon"><i class="fas fa-globe"></i></div>
+                    <div class="learn-card-badge">Next.js 15 & 16</div>
+                    <div class="learn-card-title">App Router, Server Components, Server Actions & advanced SEO</div>
+                </a>
+                <a href="https://www.youtube.com/@ThapaTechnical/playlists" target="_blank" class="learn-card">
+                    <div class="learn-card-icon"><i class="fas fa-database"></i></div>
+                    <div class="learn-card-badge">Backend</div>
+                    <div class="learn-card-title">MERN Stack — MongoDB, Express.js, Node.js with full auth & APIs</div>
+                </a>
+                <a href="https://www.youtube.com/@ThapaTechnical/playlists" target="_blank" class="learn-card">
+                    <div class="learn-card-icon"><i class="fas fa-plug"></i></div>
+                    <div class="learn-card-badge">Integrations</div>
+                    <div class="learn-card-title">Payment gateways, authentication, admin panels & cloud storage</div>
+                </a>
+                <a href="https://www.youtube.com/@ThapaTechnical/playlists" target="_blank" class="learn-card">
+                    <div class="learn-card-icon"><i class="fas fa-rocket"></i></div>
+                    <div class="learn-card-badge">Deployment</div>
+                    <div class="learn-card-title">Deploy projects on Vercel, Netlify, Firebase & shared hosting</div>
+                </a>
+                <a href="https://thapatechnical.shop" target="_blank" class="learn-card wide">
+                    <div class="learn-card-icon"><i class="fas fa-search"></i></div>
+                    <div>
+                        <div class="learn-card-badge">Special Focus</div>
+                        <div class="learn-card-title">SEO-first development — build websites that rank on Google and get organic traffic</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ WHY ══ -->
+    <div class="why-bg">
+        <div class="section-wrap">
+            <p class="section-label">Why Students Love Us</p>
+            <h2 class="section-title">Why 800,000+ Students<br>Choose Thapa Technical</h2>
+            <div class="why-grid">
+                <div class="why-card"><span class="icon">🚀</span><strong>Project-Based Learning</strong><p>Real projects like e-commerce sites, Netflix clones, job portals, and admin dashboards — not boring theory slides.</p></div>
+                <div class="why-card"><span class="icon">📅</span><strong>Always Up-to-Date</strong><p>All courses are regularly updated for 2025–2026 tech: React 19, Next.js 16, and the latest industry practices.</p></div>
+                <div class="why-card"><span class="icon">💼</span><strong>Job-Ready Skills</strong><p>Thousands of students have built strong portfolios and landed developer jobs or freelance gigs after following these tutorials.</p></div>
+                <div class="why-card"><span class="icon">🎥</span><strong>Free + Premium Resources</strong><p>Most content is completely free on YouTube. Premium courses, source codes, and notes are on thapatechnical.shop.</p></div>
+                <div class="why-card"><span class="icon">👥</span><strong>Active Community</strong><p>Join thousands of fellow developers for doubt-solving, peer support, and networking.</p></div>
+                <div class="why-card"><span class="icon">🎯</span><strong>Hindi + English Clarity</strong><p>Complex concepts explained simply in Hinglish — so nothing gets lost in translation and everyone keeps up.</p></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ CTA ══ -->
+    <section class="cta-band">
+        <div class="cta-inner">
+            <h2>Start Your Web Dev Journey<br><em>Today.</em></h2>
+            <p>Whether you want to build your own startup, go freelance, or land a high-paying IT job — Thapa Technical gives you everything in one place.</p>
+            <div class="cta-btns">
+                <a href="https://www.youtube.com/@ThapaTechnical" target="_blank" class="cta-btn-yt">
+                    <i class="fab fa-youtube"></i> Subscribe Free on YouTube
+                </a>
+                <a href="https://thapatechnical.shop" target="_blank" class="cta-btn-shop">
+                    Browse Premium Courses
+                </a>
+                <a href="https://github.com/thapatechnical" target="_blank" class="cta-btn-outline">
+                    <i class="fab fa-github"></i> Free Source Code
+                </a>
+            </div>
+            <div class="cta-tagline">
+                Thapa Technical — Where <em>Creativity</em> Meets Code.<br>
+                Turning beginners into confident developers, one project at a time.
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ FOOTER ══ -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <a href="/" class="footer-logo">
+                    <div class="nav-logo-badge">T</div>
+                    Thapa Technical
+                </a>
+                <p>By Vinod Bahadur Thapa. India's go-to platform for learning modern full-stack web development — React, Next.js, MERN Stack, and beyond.</p>
+                <div class="footer-socials">
+                    <a href="https://www.youtube.com/@ThapaTechnical" target="_blank" class="footer-social" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.instagram.com/thapatechnical/" target="_blank" class="footer-social" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/thapatechnical/" target="_blank" class="footer-social" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.facebook.com/vinodbahadurthapa/" target="_blank" class="footer-social" title="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="https://github.com/thapatechnical" target="_blank" class="footer-social" title="GitHub"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="#about">About Vinod Bhai</a></li>
+                    <li><a href="https://www.youtube.com/@ThapaTechnical" target="_blank">YouTube Channel</a></li>
+                    <li><a href="https://thapatechnical.shop" target="_blank">Premium Courses</a></li>
+                    <li><a href="https://github.com/thapatechnical" target="_blank">Free Source Code</a></li>
+                    <li><a href="https://www.thapatechnical.com/" target="_blank">Blog & Articles</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Courses</h4>
+                <ul>
+                    <li><a href="https://www.youtube.com/@ThapaTechnical/playlists" target="_blank">React JS Full Course</a></li>
+                    <li><a href="https://www.youtube.com/@ThapaTechnical/playlists" target="_blank">Next.js 16 Full Stack</a></li>
+                    <li><a href="https://www.youtube.com/@ThapaTechnical/playlists" target="_blank">MERN Stack Mastery</a></li>
+                    <li><a href="https://www.youtube.com/@ThapaTechnical/playlists" target="_blank">JavaScript + 15 Projects</a></li>
+                    <li><a href="https://www.youtube.com/@ThapaTechnical/playlists" target="_blank">Tailwind CSS</a></li>
+                    <li><a href="https://www.youtube.com/@ThapaTechnical/playlists" target="_blank">TypeScript &amp; MongoDB</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Site</h4>
+                <ul>
+                    <li><a href="https://www.thapatechnical.com/p/contact-us.html" target="_blank">Contact</a></li>
+                    <li><a href="https://www.thapatechnical.com/p/privacy-policy.html" target="_blank">Privacy Policy</a></li>
+                    <li><a href="https://thapatechnical.shop" target="_blank">Terms of Use</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Thapa Technical. All Rights Reserved. Made with ❤️ for Indian developers.</p>
+            <p>By <a href="#about" style="color: var(--cyan); text-decoration: none;">Vinod Bahadur Thapa</a></p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleNav() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('nav-icon');
+            menu.classList.toggle('open');
+            icon.className = menu.classList.contains('open') ? 'fas fa-times' : 'fas fa-bars';
+        }
+
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.remove('open');
+                document.getElementById('nav-icon').className = 'fas fa-bars';
+            });
+        });
+
+        console.log('%c✅ Thapa Technical | Built for max SEO & conversions 🚀', 'color:#00d4ff; font-size:14px;');
+    </script>
+</body>
+</html>
